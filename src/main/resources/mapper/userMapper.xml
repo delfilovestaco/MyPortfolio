@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myportfolio.web.dao.UserMapper">
+    <sql id="selectFromUser"> <!--아 이건 호출용 sql이 아니구낭-->
+        select id, pwd, name, email, birth, sns, reg_date
+        from user_info
+    </sql>
+
+<!--  아이디를 넘겨주면, 계정 정보를 가져옴  -->
+    <select id="select" parameterType="string" resultType="UserDto">
+        <include refid="selectFromUser"/>
+        where id = #{id}
+    </select>
+    <select id="selectAll" resultType="UserDto">
+        select id, pwd, name, email, birth, sns, reg_date
+        from user_info
+    </select>
+<!--  가입된 모든 계정의 수  -->
+    <select id="count" resultType="int">
+        select count(*) from user_info
+    </select>
+
+<!--  회원 가입  ??-->
+    <insert id="insert" parameterType="UserDto">
+        insert into user_info (id, pwd, name, email, birth, sns)
+        values (#{id}, #{pwd}, #{name}, #{email}, #{birth}, #{sns})
+    </insert>
+
+<!--  아이디와 비번를 넘겨주면, 계정을 삭제 -->
+    <delete id="delete" parameterType="map">
+        delete from user_info where id = #{id} and pwd = #{pwd};
+    </delete>
+    <delete id="deleteAll">
+        delete from user_info
+    </delete>
+
+<!--  유저 객체를 넘겨주면 업데이트  -->
+    <update id="update" parameterType="UserDto">
+        update user_info
+        set pwd = #{pwd}, name = #{name}, email = #{email}, birth = #{birth}, sns = #{sns}
+        where id = #{id}
+    </update>
+
+</mapper>
