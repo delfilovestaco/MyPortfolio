@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myportfolio.web.dao.BoardMapper">
+    <sql id="selectFromBoard"> <!--아 이건 호출용 sql이 아니구낭-->
+        select bno, title, content, writer, view_cnt, comment_cnt, reg_date, up_date
+        from board
+    </sql>
+
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                and title like concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                and writer like concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                and (title like concat('%', #{keyword}, '%')
+                or content like concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="count" resultType="int">
+        select count(*) from board
+    </select>
+    <select id="select" parameterType="int" resultType="BoardDto">
+        <include refid="selectFromBoard"/>
+        where bno = #{bno}
+    </select>
+    <select id="selectAll" resultType="BoardDto"> <!--모든 게시물 다 반환하는 것. 내림차순-->
+        select bno, title, content, writer, view_cnt, comment_cnt, reg_date, up_date
+        from board order by reg_date desc, bno desc
+    </select>
+    <select id="selectPage" parameterType="map" resultType="BoardDto">
+        <include refid="selectFromBoard"/>
+        order by reg_date desc, bno desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto">
+        <include refid="selectFromBoard"/>
+        where true
+        <include refid="searchCondition"></include>
+        order by reg_date desc, bno desc
+        limit #{offset}, #{pageSize}
+    </select>
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        from board
+        where true
+        <include refid="searchCondition"></include>
+    </select>
+
+    <insert id="insert" parameterType="BoardDto">
+        insert into board (title, content, writer)
+        values (#{title}, #{content}, #{writer})
+    </insert>
+
+    <delete id="delete" parameterType="map"> <!-- id만 넘기면, 해당 작성자 글 다 삭제됨-->
+        delete from board where bno = #{bno} and writer = #{writer}
+    </delete>
+    <delete id="deleteAll">
+        delete from board
+    </delete>
+    <delete id="deleteForAdmin" parameterType="int"> <!-- DAO에 없음-->
+        delete from board where bno = #{bno}
+    </delete>
+
+    <update id="update" parameterType="BoardDto">
+        update board set title = #{title}, content = #{content}, up_date = now()
+        where bno = #{bno} and writer = #{writer};
+    </update>
+
+    <update id= "increaseViewCnt" parameterType="int">
+        update board
+        set view_cnt = view_cnt + 1
+        where bno = #{bno}
+    </update>
+    <update id="updateComment" parameterType="map">
+        update board
+        set comment_cnt = comment_cnt + #{cnt}
+        where bno = #{bno}
+    </update>
+</mapper>
