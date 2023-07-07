@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+//import junitparams.JUnitParamsRunner;
 
 import java.sql.Date;
 
@@ -51,6 +52,7 @@ public class UserDaoImplTest extends TestCase {
         UserDto userDto = new UserDto("asdf", "1234", "서두부", "aaa@aaa.com", Date.valueOf("2021-01-01"),"fb");
         assertTrue(userDao.insert(userDto) == 1);
         assertTrue(userDao.count() == 1);
+
 
     }
 
@@ -105,5 +107,10 @@ public class UserDaoImplTest extends TestCase {
         //아이디를 넘겨주며 DTO 객체 하나 받아옴
         UserDto userDto2 = userDao.select(id);
         assertTrue(userDto1.equals(userDto2));
+    }
+
+    @Test
+    public void countId() throws Exception{
+        assertTrue(userDao.countId("asdf") == 1);
     }
 }
