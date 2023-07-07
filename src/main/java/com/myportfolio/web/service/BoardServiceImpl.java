@@ -52,7 +52,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDto> getPage(Map map) throws Exception {
+    public List<BoardDto> getPage(Map map  ) throws Exception {
         return boardDao.selectPage(map);
     }
 

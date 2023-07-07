@@ -1,9 +1,11 @@
 package com.myportfolio.web.controller;
 
 import com.myportfolio.web.domain.BoardDto;
+import com.myportfolio.web.domain.CommentDto;
 import com.myportfolio.web.domain.PageHandler;
 import com.myportfolio.web.domain.SearchCondition;
 import com.myportfolio.web.service.BoardService;
+import com.myportfolio.web.service.CommentService;
 import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,7 @@ import java.util.Map;
 public class BoardController {
     @Autowired
     BoardService boardService;
+    CommentService commentService;
 
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, Integer page, Integer pageSize, Model m, HttpSession session, RedirectAttributes rattr){
@@ -155,6 +158,6 @@ public class BoardController {
         // 1. 세션을 얻어서
         HttpSession session = request.getSession();
         // 2. 세션에 id가 있는지 확인, 있으면 true를 반환
-        return session.getAttribute("id")!=null;
+        return session.getAttribute("id")!= null;
     }
 }
