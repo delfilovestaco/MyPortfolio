@@ -11,6 +11,7 @@ public interface UserDao {
 
     int count() throws Exception // T selectOne(String statement)
     ;
+    int countId(String id) throws Exception;
 
     int insert(UserDto userDto) throws Exception;
 

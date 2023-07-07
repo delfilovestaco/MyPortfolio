@@ -30,6 +30,11 @@ public class UserDaoImpl implements UserDao {
     } // T selectOne(String statement)
 
     @Override
+    public int countId(String id) throws Exception{
+        return session.selectOne(namespace+"idCheck", id);
+    }
+
+    @Override
     public int insert(UserDto userDto) throws Exception{
         return session.insert(namespace+"insert", userDto);
     }
