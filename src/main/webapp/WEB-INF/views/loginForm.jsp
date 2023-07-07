@@ -13,9 +13,17 @@
   <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
   <style>
+    body{
+      height: 100vh;
+      width: 100vw;
+      background-image: url('<c:url value="/images/abstract-blue-background-simple-design-for-your-website-free-vector.jpg"/>');
+      background-repeat : no-repeat;
+      background-size : cover;
+    }
     * { box-sizing:border-box; }
     a { text-decoration: none; }
     form {
+      background-color: #fefefe;
       width:400px;
       height:500px;
       display : flex;

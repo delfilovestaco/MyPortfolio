@@ -13,6 +13,15 @@
     <title>myportfolio</title>
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <style>
+        .background {
+            height: 100vh;
+            width: 100vw;
+            background-image: url('<c:url value="/images/abstract-blue-background-simple-design-for-your-website-free-vector.jpg"/>');
+            background-repeat : no-repeat;
+            background-size : cover;
+        }
+    </style>
 </head>
 <script>
     let msg = `${msg}`;
@@ -29,10 +38,7 @@
         <li><a href=""><i class="fa fa-search"></i></a></li>
     </ul>
 </div>
-<div style="text-align:center">
-    <h1>This is HOME</h1>
-    <h1>This is HOME</h1>
-    <h1>This is HOME</h1>
+<div class="background">
 </div>
 </body>
 </html>

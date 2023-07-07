@@ -17,6 +17,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <style>
+    <%--body{--%>
+    <%--  height: 100vh;--%>
+    <%--  width: 100vw;--%>
+    <%--  background-image: url('<c:url value="/images/abstract-blue-background-simple-design-for-your-website-free-vector.jpg"/>');--%>
+    <%--  background-repeat : no-repeat;--%>
+    <%--  background-size : cover;--%>
+    <%--}--%>
 
     *{
       box-sizing: border-box;
