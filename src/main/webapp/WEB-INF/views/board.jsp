@@ -15,7 +15,7 @@
   <title>myportfolio</title>
   <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.js" charset="utf-8"></script>
   <style>
     <%--body{--%>
     <%--  height: 100vh;--%>
@@ -554,67 +554,6 @@
     });
   });
 </script>
-<%------------------------------------------%>
-<%--<script>--%>
-<%--  $(document).ready(function(){--%>
-<%--    // --------------답글 쓰기 클릭--%>
-<%--    // $("a.btn-write").click(function(e){--%>
-<%--    //   let target = e.target;--%>
-<%--    //   let cno = target.getAttribute("data-cno")--%>
-<%--    //   let bno = target.getAttribute("data-bno")--%>
-<%--    //--%>
-<%--    //   let repForm = $("#reply-writebox");--%>
-<%--    //   repForm.appendTo($("li[data-cno="+cno+"]"));--%>
-<%--    //   repForm.css("display", "block");--%>
-<%--    //   repForm.attr("data-pcno", pcno);--%>
-<%--    //   repForm.attr("data-bno",  bno);--%>
-<%--    // });--%>
-<%--    //--------------답글 취소--%>
-<%--    // $("#btn-cancel-reply").click(function(e){--%>
-<%--    //   $("#reply-writebox").css("display", "none");--%>
-<%--    // });--%>
-
-<%--    // ---------------수정 클릭--%>
-<%--    // $("a.btn-modify").click(function(e){--%>
-<%--    //   let target = e.target;--%>
-<%--    //   let cno = target.getAttribute("data-cno");--%>
-<%--    //   let bno = target.getAttribute("data-bno");--%>
-<%--    //   let pcno = target.getAttribute("data-pcno");--%>
-<%--    //   let li = $("li[data-cno="+cno+"]");--%>
-<%--    //   let commenter = $(".commenter", li).first().text();--%>
-<%--    //   let comment = $(".comment-content", li).first().text();--%>
-<%--    //--%>
-<%--    //   $("#modalWin .commenter").text(commenter);--%>
-<%--    //   $("#modalWin textarea").text(comment);--%>
-<%--    //   $("#btn-write-modify").attr("data-cno", cno);--%>
-<%--    //   $("#btn-write-modify").attr("data-pcno", pcno);--%>
-<%--    //   $("#btn-write-modify").attr("data-bno", bno);--%>
-<%--    //--%>
-<%--    //   // 팝업창을 열고 내용을 보여준다.--%>
-<%--    //   $("#modalWin").css("display","block");--%>
-<%--    // });--%>
-
-<%--    //----------------수정 후 등록 버튼 클릭--%>
-<%--    // $("#btn-write-modify").click(function(){--%>
-<%--    //   // 1. 변경된 내용을 서버로 전송--%>
-<%--    //   // 2. 모달 창을 닫는다.--%>
-<%--    //   $(".close").trigger("click");--%>
-<%--    // });--%>
-
-<%--    // -------------------삭제 버튼 클릭--%>
-<%--    // $("a.btn-delete").click(function(e){--%>
-<%--    //   alert("delete");--%>
-<%--    // });--%>
-
-
-
-<%--    //---------------모달 창의 클로즈 버튼 클릭--%>
-<%--    // $(".close").click(function(){--%>
-<%--    //   $("#modalWin").css("display","none");--%>
-<%--    // });--%>
-<%--  });--%>
-<%--</script>--%>
-
 <%-----------------------------댓글-------------------------------------%>
 <script>
   let id = '${id}';

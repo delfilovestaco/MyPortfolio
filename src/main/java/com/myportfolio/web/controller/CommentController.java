@@ -30,7 +30,7 @@ public class CommentController {
 //    }
 
     //댓글을 수정하는 메서드
-    @PatchMapping("/comments/{cno}") //PATCH /comments/1 <- 수정할 댓글 대상
+    @PatchMapping(value = "/comments/{cno}", produces = "application/text; charset=utf8") //PATCH /comments/1 <- 수정할 댓글 대상
 //    @ResponseBody
     public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto, HttpSession session){
           String commenter = (String)session.getAttribute("id");
@@ -43,15 +43,15 @@ public class CommentController {
             if(service.modify(dto) != 1){
                 throw new Exception("Modify Failed");
             }
-            return new ResponseEntity<String>("MOD_OK", HttpStatus.OK);
+            return new ResponseEntity<String>("댓글 수정 완료!", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("MOD_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("댓글 수정 실패!", HttpStatus.BAD_REQUEST);
         }
     }
 
     //댓글을 저장하는 메서드
-    @PostMapping("/comments") //web/comments?bno=1085 POST
+    @PostMapping(value = "/comments", produces = "application/text; charset=utf8") //web/comments?bno=1085 POST
 //    @ResponseBody
     public ResponseEntity<String> write(@RequestBody CommentDto dto, Integer bno, HttpSession session){
         String commenter = (String)session.getAttribute("id");
@@ -65,15 +65,15 @@ public class CommentController {
             if(service.write(dto) != 1){ //결과 값이 1이면 성공 -> 아니면 실패 -> 예외 던짐
                 throw new Exception("Write Failed");
             }
-            return new ResponseEntity<String>("WRT_OK", HttpStatus.OK);
+            return new ResponseEntity<String>("댓글 작성 완료!", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("WRT_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("댓글 작성 실패!", HttpStatus.BAD_REQUEST);
         }
     }
 
     //지정된 댓글을 삭제하는 메서드
-    @DeleteMapping("/comments/{cno}") // DELETE /comments/1 <- 삭제할 댓글 번호 그 뒤에 ?bno=1080이 붙음 이게 쿼리스트링
+    @DeleteMapping(value = "/comments/{cno}", produces = "application/text; charset=utf8") // DELETE /comments/1 <- 삭제할 댓글 번호 그 뒤에 ?bno=1080이 붙음 이게 쿼리스트링
     //{cno}는 쿼리스트링 값이 아님, URI의 일부임 -> 해당 값을 받는 매개변수에 @PathVariable 붙임
 //    @ResponseBody
     public ResponseEntity<String> remove(@PathVariable Integer cno, Integer bno, HttpSession session){
@@ -85,10 +85,10 @@ public class CommentController {
             if(rowCnt != 1){ //성공 시 1 반환 -> 아니면 실패라는 뜻
                 throw new Exception(("Delete Failed"));
             }
-            return new ResponseEntity<>("DEL_OK", HttpStatus.OK);
+            return new ResponseEntity<>("댓글 삭제 완료!", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("댓글 삭제 실패!", HttpStatus.BAD_REQUEST);
         }
     }
 
